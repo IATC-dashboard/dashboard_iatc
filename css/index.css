@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.5715;
+  background-color: #fff;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none !important;
+}
+li {
+  list-style: none;
+}
+h1 {
+  font-size: 28px !important;
+}
+.brand-name h1 {
+  font-size: 28px !important;
+  font-weight: 500;
+}
+
+
+.interface {
+  background: #f0f2f5;
+  width: 80vw;
+  /* height: 100vh; */
+  position: absolute;
+  right: 0;
+}
+
+.navigation {
+  width: 80vw;
+  height: 70px;
+  z-index: 300;
+  background-color: #fff;
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+.navigation .login-out {
+  margin-right: 40px;
+}
+.navigation .login-out img {
+  width: 30px;
+}
+
+.interface .content {
+  position: relative;
+  margin-top: 10vh;
+  min-height: 90vh;
+}
+
+.interface .content .cards {
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.interface .content .cards .card {
+  width: 200px;
+  height: 150px;
+  background: white;
+  margin: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.icon-case img {
+  width: 40px;
+}
+
+.interface .content .cards .card h3 {
+  color: #999;
+}
+
+.interface .content .content-2 {
+  min-height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.interface .content .content-2 .recent-payments {
+  min-height: 50vh;
+  flex: 5;
+  background: white;
+  margin: 0 25px 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+}
+.interface .content .content-2 .new-students {
+  flex: 2;
+  background: white;
+  min-height: 50vh;
+  margin: 0 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 10px;
+  border-bottom: 2px solid #999;
+}
+.btn {
+  background: #232f4b;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+}
+.btn:hover {
+  color: #232f4b;
+  background: white;
+  padding: 3px 8px;
+  border: 2px solid #232f4b;
+}
+
+table {
+  padding: 10px;
+}
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+.staff {
+  padding: 30px;
+  margin-top: 10vh;
+  min-height: 90vh;
+}
+.staff-content {
+  background: white;
+  padding: 40px;
+}
+.check-nav {
+  display: none;
+}
+#check {
+  display: none;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1144px) {
+  .brand-name h1 {
+    font-size: 22px !important;
+  }
+  .side-menu li {
+    font-size: 18px;
+  }
+  .interface .content .cards {
+    justify-content: space-evenly;
+  }
+  .interface .content .cards .card {
+    width: 250px;
+    margin: 20px 35px;
+  }
+  .interface .content .content-2 {
+    min-height: 60vh;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .interface .content .cards {
+    justify-content: center;
+  }
+  .interface .content .cards .card {
+    width: 200px;
+    margin: 20px 35px;
+  }
+}
+@media screen and (max-width: 536px) {
+  .side-menu {
+    display: none;
+  }
+  .check-nav {
+    display: block;
+    margin-left: 40px;
+  }
+  .interface {
+    background: #f0f2f5;
+    width: 100vw;
+  }
+  .navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

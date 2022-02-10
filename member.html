@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="side-menu">
+        <div class="menu">
+            <div class="logo">
+                <img class="logo_img" src="./media/iatc_logo_main.png" alt="">
+            </div>
+            <ul>
+              
+                <li id="menu-items"><i class="fas fa-file"></i><a
+                        href="pages.html">&nbsp;&nbsp;&nbsp;<span>Sehifeler</span> </a> </li>
+                <li id="menu-items"><i class="fab fa-creative-commons-by"></i><a
+                        href="member.html">&nbsp;&nbsp;&nbsp;<span>Üzvlər</span> </a> </li>
+                <li id="menu-items"><i class="fas fa-calendar-check"></i><a
+                        href="event.html">&nbsp;&nbsp;&nbsp;<span>Tədbirlər</span> </a> </li>
+                <li id="menu-items"><i class="fas fa-address-card"></i><a
+                        href="about.html">&nbsp;&nbsp;&nbsp;<span>Haqqımızda</span> </a> </li>
+                <li id="menu-items"><i class="fas fa-address-book"></i><a
+                        href="contact.html">&nbsp;&nbsp;&nbsp;<span>Əlaqə</span> </a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="interface">
+        <div class="navigation">
+            <div class="check-nav">
+                <input type="checkbox" id="check" />
+                <label for="check" class="checkbtn">
+                    <img src="https://img.icons8.com/material-outlined/24/00000d/menu--v3.png" />
+                </label>
+            </div>
+            <div id="logout" class="login-out">
+                <img src="/media/power-off.png" alt="">
+            </div>
+        </div>
+        <div class="staff">
+            <div class="staff-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>#</th>
+                        <th>Adı</th>
+                        <th>Soyadı</th>
+                        <th>Vəzifəsi</th>
+                        <th><button class="btn btn-success">Yeni</button></th>
+                    </thead>
+                    <tbody>
+                        <tr data-id="0"></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="staff-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Üzv haqqinda melumat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Ad</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Soyad</label>
+                        <input type="text" name="surname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Vəzifə</label>
+                        <input type="text" name="position" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <input type="email" name="facebook" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter</label>
+                        <input type="email" name="twitter" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Linkedin</label>
+                        <input type="email" name="linkedin" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Bagla</button>
+                    <button type="button" class="btn btn-success "><i class="fa fa-save"></i> Yadda saxla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="staffUpdate-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Üzv haqqinda melumat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Ad</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Soyad</label>
+                        <input type="text" name="surname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Vəzifə</label>
+                        <input type="text" name="position" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <input type="email" name="facebook" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter</label>
+                        <input type="email" name="twitter" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Linkedin</label>
+                        <input type="email" name="linkedin" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Bagla</button>
+                    <button type="button" id="edit-member" class="btn btn-success "><i class="fa fa-save"></i> Yadda
+                        saxla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/member.js"></script>
+</body>
+
+</html>
