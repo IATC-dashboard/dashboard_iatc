@@ -10,7 +10,7 @@ import {
   storage,
   sRef,
   uploadBytesResumable,
-  getDownloadURL
+  getDownloadURL,
 } from "./module.js";
 
 //logout
@@ -40,10 +40,24 @@ $("thead").on("click", ".btn-success", function (e) {
 // add member data
 $("#staff-modal .modal-footer").on("click", ".btn-success", function (e) {
   e.preventDefault();
-
-  
   var name = $('#staff-modal .modal-body input[name="name"]').val().trim();
-  var textarea = $("#staff-modal .modal-body #aboutContent").val().trim();
+  var teacher = $('#staff-modal .modal-body input[name="teacher"]')
+    .val()
+    .trim();
+  var courseContent = $("#staff-modal .modal-body #courseContent").val().trim();
+  var information = $("#staff-modal .modal-body #information").val().trim();
+  var duration = $('#staff-modal .modal-body input[name="duration"]')
+    .val()
+    .trim();
+  var student = $('#staff-modal .modal-body input[name="student"]')
+    .val()
+    .trim();
+  var participants = $("#staff-modal .modal-body #participants").val().trim();
+  var program = $("#staff-modal .modal-body #program").val().trim();
+  var skills = $("#staff-modal .modal-body #skills").val().trim();
+  const userId = push(child(ref(db), "course")).key;
+  var branch = ref(db, "course/" + userId);
+
   var reader = new FileReader();
   var myFile = $("#upload").prop("files");
   var temp = myFile[0].name.split(".");
@@ -57,10 +71,7 @@ $("#staff-modal .modal-footer").on("click", ".btn-success", function (e) {
   const metaData = {
     contentType: ImgToUpload.type,
   };
-
-  const userId = push(child(ref(db), "about")).key;
-  var branch = ref(db, "about/" + userId);
-  const imagesRef = sRef(storage, "about/" + imgName);
+  const imagesRef = sRef(storage, "course/" + imgName);
 
   const UploadTask = uploadBytesResumable(imagesRef, ImgToUpload, metaData);
 
@@ -73,7 +84,7 @@ $("#staff-modal .modal-footer").on("click", ".btn-success", function (e) {
     () => {
       getDownloadURL(UploadTask.snapshot.ref)
         .then((downloadURL) => {
-          console.log(downloadURL);
+          // console.log(downloadURL);
           SaveURLtoRealtimDB(downloadURL);
         })
         .catch((error) => {
@@ -84,35 +95,53 @@ $("#staff-modal .modal-footer").on("click", ".btn-success", function (e) {
   function SaveURLtoRealtimDB(URL) {
     set(branch, {
       name,
-      textarea,
-      ImageName: fname +"."+ ext,
+      teacher,
+      courseContent,
+      information,
+      duration,
+      student,
+      participants,
+      program,
+      skills,
+      ImageName: fname + "." + ext,
       ImgUrl: URL,
     });
   }
-
+  // set(branch, {
+  //   name,
+  //   teacher,
+  //   courseContent,
+  //   information,
+  //   duration,
+  //   student,
+  //   participants,
+  //   program,
+  //   skills
+  // });
   $("#staff-modal .modal-body input").val("");
   $("#staff-modal .modal-body textarea").val("");
   $("#staff-modal").modal("hide");
 });
 
 //get page data
-onValue(ref(db, "about"), (snapshot) => {
+onValue(ref(db, "course"), (snapshot) => {
   $("tbody").empty();
   snapshot.forEach((childSnapshot) => {
     const childKey = childSnapshot.key;
     const childData = childSnapshot.val();
     $("tbody").append(`
-        <tr data-id="${childKey}" data-name="${childData.ImageName}">
-        <td></td>
-        <td>${childData.name}</td>
-        <td>
-        <button class="btn btn-primary"><i class="fa fa-pencil"></i>
-        </button>
-        <button class="btn btn-danger delete"><i class="fa fa-trash"></i>
-        </button>
-        </td>
-        </tr>
-    `);
+          <tr data-id="${childKey}" data-name="${childData.ImageName}">
+          <td></td>
+          <td>${childData.name}</td>
+          <td>${childData.teacher}</td>
+          <td>
+          <button class="btn btn-primary"><i class="fa fa-pencil"></i>
+          </button>
+          <button class="btn btn-danger delete"><i class="fa fa-trash"></i>
+          </button>
+          </td>
+          </tr>
+      `);
   });
   Nomrele();
 });
@@ -120,12 +149,8 @@ onValue(ref(db, "about"), (snapshot) => {
 //delete page data
 $("tbody").on("click", ".delete", function (e) {
   e.preventDefault();
-  var deleteAboutKey = $(this).parents("tr").data("id");
-  // var deleteAboutImage = $(this).parents("tr").data("name");
-  const rootRef = ref(db, "about/" + deleteAboutKey);
-  
-  // const desertRef = ref(storage, "about/"+deleteAboutImage);
-  // deleteObject(desertRef);
+  var deleteCourseKey = $(this).parents("tr").data("id");
+  const rootRef = ref(db, "course/" + deleteCourseKey);
   remove(rootRef);
   Nomrele();
 });
@@ -133,34 +158,72 @@ $("tbody").on("click", ".delete", function (e) {
 //open edit modal and get modal data
 $("tbody").on("click", ".btn-primary", function (e) {
   e.preventDefault();
-  var editAboutKey = $(this).parents("tr").data("id");
+  var editCourseKey = $(this).parents("tr").data("id");
   $("#staffUpdate-modal").modal("show");
-  onValue(ref(db, "about/" + editAboutKey), (snapshot) => {
+  onValue(ref(db, "course/" + editCourseKey), (snapshot) => {
     $('#staffUpdate-modal .modal-body input[name="name"]').val(
       snapshot.val().name
     );
-    $("#staffUpdate-modal .modal-body #aboutContent").val(
-      snapshot.val().textarea
+    $('#staffUpdate-modal .modal-body input[name="teacher"]').val(
+      snapshot.val().teacher
+    );
+    $("#staffUpdate-modal .modal-body #courseContent").val(
+      snapshot.val().courseContent
+    );
+    $("#staffUpdate-modal .modal-body #information").val(
+      snapshot.val().information
+    );
+    $('#staffUpdate-modal .modal-body input[name="duration"]').val(
+      snapshot.val().duration
+    );
+    $('#staffUpdate-modal .modal-body input[name="student"]').val(
+      snapshot.val().student
+    );
+    $("#staffUpdate-modal .modal-body #participants").val(
+      snapshot.val().participants
+    );
+    $("#staffUpdate-modal .modal-body #program").val(
+      snapshot.val().participants
+    );
+    $("#staffUpdate-modal .modal-body #skills").val(
+      snapshot.val().participants
     );
     $('#staffUpdate-modal .modal-body input[name="file"]').val(
       snapshot.val().ImageName
     );
   });
 
-  // //edit page data
+  //edit page data
   $("#staffUpdate-modal .modal-footer").on(
     "click",
-    "#edit-about",
+    "#edit-course",
     function (e) {
       e.preventDefault();
-      
       var name = $('#staffUpdate-modal .modal-body input[name="name"]')
         .val()
         .trim();
-      var textarea = $("#staffUpdate-modal .modal-body #aboutContent")
+      var teacher = $('#staffUpdate-modal .modal-body input[name="teacher"]')
         .val()
         .trim();
-        var reader = new FileReader();
+      var courseContent = $("#staffUpdate-modal .modal-body #courseContent")
+        .val()
+        .trim();
+      var information = $("#staffUpdate-modal .modal-body #information")
+        .val()
+        .trim();
+      var duration = $('#staffUpdate-modal .modal-body input[name="duration"]')
+        .val()
+        .trim();
+      var student = $('#staffUpdate-modal .modal-body input[name="student"]')
+        .val()
+        .trim();
+      var participants = $("#staffUpdate-modal .modal-body #participants")
+        .val()
+        .trim();
+      var program = $("#staffUpdate-modal .modal-body #program").val().trim();
+      var skills = $("#staffUpdate-modal .modal-body #skills").val().trim();
+
+      var reader = new FileReader();
       var myFile = $("#updateUpload").prop("files");
       var temp = myFile[0].name.split(".");
       var fname = temp[0];
@@ -173,8 +236,8 @@ $("tbody").on("click", ".btn-primary", function (e) {
       const metaData = {
         contentType: ImgToUpload.type,
       };
-      const rootRef = ref(db, "about/" + editAboutKey);
-      const imagesRef = sRef(storage, "about/" + imgName);
+      const rootRef = ref(db, "course/" + editCourseKey);
+      const imagesRef = sRef(storage, "course/" + imgName);
 
       const UploadTask = uploadBytesResumable(imagesRef, ImgToUpload, metaData);
 
@@ -198,12 +261,19 @@ $("tbody").on("click", ".btn-primary", function (e) {
       function SaveURLtoRealtimDB(URL) {
         update(rootRef, {
           name,
-          textarea,
+          teacher,
+          courseContent,
+          information,
+          duration,
+          student,
+          participants,
+          program,
+          skills,
           ImageName: fname + ext,
           ImgUrl: URL
         });
       }
-
+      
       $("#staffUpdate-modal").modal("hide");
     }
   );

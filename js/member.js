@@ -7,7 +7,27 @@ import {
   child,
   update,
   remove,
+  storage,
+  sRef,
+  uploadBytesResumable,
+  getDownloadURL
 } from "./module.js";
+
+//logout
+import { auth, signOut } from "./module.js";
+
+    $("#logout").on("click", function (e) {
+        e.preventDefault();
+
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            window.location.href = "login.html";
+          }).catch((error) => {
+            // An error happened.
+            console.log(error);
+          });
+      });
+
 
 //open new modal
 $("thead").on("click", ".btn-success", function (e) {
@@ -20,31 +40,63 @@ $("thead").on("click", ".btn-success", function (e) {
 $("#staff-modal .modal-footer").on("click", ".btn-success", function (e) {
   e.preventDefault();
   var name = $('#staff-modal .modal-body input[name="name"]').val().trim();
-  var surname = $('#staff-modal .modal-body input[name="surname"]')
-    .val()
-    .trim();
-  var position = $('#staff-modal .modal-body input[name="position"]')
-    .val()
-    .trim();
-  var facebookLink = $('#staff-modal .modal-body input[name="facebook"]')
-    .val()
-    .trim();
-  var twitterLink = $('#staff-modal .modal-body input[name="twitter"]')
-    .val()
-    .trim();
-  var linkedinLink = $('#staff-modal .modal-body input[name="linkedin"]')
-    .val()
-    .trim();
+  var surname = $('#staff-modal .modal-body input[name="surname"]').val().trim();
+  var position = $('#staff-modal .modal-body input[name="position"]').val().trim();
+  var facebookLink = $('#staff-modal .modal-body input[name="facebook"]').val().trim();
+  var twitterLink = $('#staff-modal .modal-body input[name="twitter"]').val().trim();
+  var linkedinLink = $('#staff-modal .modal-body input[name="linkedin"]').val().trim();
+
+  var reader = new FileReader();
+  var myFile = $("#upload").prop("files");
+  var temp = myFile[0].name.split(".");
+  var fname = temp[0];
+  var ext = temp[1];
+  reader.readAsDataURL(myFile[0]);
+
+  var ImgToUpload = myFile[0];
+  var imgName = myFile[0].name;
+
+  const metaData = {
+    contentType: ImgToUpload.type,
+  };
+
   const userId = push(child(ref(db), "members")).key;
   var branch = ref(db, "members/" + userId);
-  set(branch, {
-    name,
+  const imagesRef = sRef(storage, "members/" + imgName);
+
+  const UploadTask = uploadBytesResumable(imagesRef, ImgToUpload, metaData);
+
+  UploadTask.on(
+    "state-changed",
+    (snapshot) => {},
+    (error) => {
+      alert("error: image not uploaded!" + error);
+    },
+    () => {
+      getDownloadURL(UploadTask.snapshot.ref)
+        .then((downloadURL) => {
+          console.log(downloadURL);
+          SaveURLtoRealtimDB(downloadURL);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  );
+  function SaveURLtoRealtimDB(URL) {
+    set(branch, {
+      name,
     surname,
     position,
     facebookLink,
     twitterLink,
     linkedinLink,
-  });
+      ImageName: fname +"."+ ext,
+      ImgUrl: URL,
+    });
+  }
+
+ 
   $("#staff-modal .modal-body input").val("");
   $("#staff-modal").modal("hide");
 });
@@ -56,7 +108,7 @@ onValue(ref(db, "members"), (snapshot) => {
     const childKey = childSnapshot.key;
     const childData = childSnapshot.val();
     $("tbody").append(`
-      <tr data-id="${childKey}">
+      <tr data-id="${childKey}" data-name="${childData.ImageName}">
       <td></td>
       <td>${childData.name}</td>
       <td>${childData.surname}</td>
@@ -105,16 +157,54 @@ $("tbody").on("click", ".btn-primary", function (e){
     var facebookLink = $('#staffUpdate-modal .modal-body input[name="facebook"]').val().trim();
     var twitterLink = $('#staffUpdate-modal .modal-body input[name="twitter"]').val().trim();
     var linkedinLink = $('#staffUpdate-modal .modal-body input[name="linkedin"]').val().trim();
+    var reader = new FileReader();
+      var myFile = $("#updateUpload").prop("files");
+      var temp = myFile[0].name.split(".");
+      var fname = temp[0];
+      var ext = temp[1];
+      reader.readAsDataURL(myFile[0]);
 
-    const rootRef = ref(db, "members/" + editMemberKey);
-    update(rootRef,{
-        name,
+      var ImgToUpload = myFile[0];
+      var imgName = myFile[0].name;
+
+      const metaData = {
+        contentType: ImgToUpload.type,
+      };
+      const rootRef = ref(db, "members/" + editMemberKey);
+      const imagesRef = sRef(storage, "members/" + imgName);
+
+      const UploadTask = uploadBytesResumable(imagesRef, ImgToUpload, metaData);
+
+      UploadTask.on(
+        "state-changed",
+        (snapshot) => {},
+        (error) => {
+          alert("error: image not uploaded!" + error);
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              console.log(downloadURL);
+              SaveURLtoRealtimDB(downloadURL);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      );
+      function SaveURLtoRealtimDB(URL) {
+        update(rootRef, {
+          name,
       surname,
       position,
       facebookLink,
       twitterLink,
-      linkedinLink
-    });
+      linkedinLink,
+          ImageName: fname + ext,
+          ImgUrl: URL
+        });
+      }
+
     $("#staffUpdate-modal").modal("hide");
   });
 });

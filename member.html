@@ -8,8 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/menu.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css " />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -19,37 +18,38 @@
 </head>
 
 <body>
-    <div class="side-menu">
-        <div class="menu">
-            <div class="logo">
-                <img class="logo_img" src="./media/iatc_logo_main.png" alt="">
-            </div>
-            <ul>
-              
-                <li id="menu-items"><i class="fas fa-file"></i><a
-                        href="pages.html">&nbsp;&nbsp;&nbsp;<span>Sehifeler</span> </a> </li>
-                <li id="menu-items"><i class="fab fa-creative-commons-by"></i><a
-                        href="member.html">&nbsp;&nbsp;&nbsp;<span>Üzvlər</span> </a> </li>
-                <li id="menu-items"><i class="fas fa-calendar-check"></i><a
-                        href="event.html">&nbsp;&nbsp;&nbsp;<span>Tədbirlər</span> </a> </li>
-                <li id="menu-items"><i class="fas fa-address-card"></i><a
-                        href="about.html">&nbsp;&nbsp;&nbsp;<span>Haqqımızda</span> </a> </li>
-                <li id="menu-items"><i class="fas fa-address-book"></i><a
-                        href="contact.html">&nbsp;&nbsp;&nbsp;<span>Əlaqə</span> </a> </li>
-            </ul>
+    <div class="menu">
+        <div class="logo">
+            <img class="logo_img" src="./media/iatc_logo_main.png" alt="">
         </div>
+        <ul class="items">
+            <!-- <li id="menu-items"><i class="fas fa-home"></i><a href="index.html">&nbsp;&nbsp;&nbsp;<span>Ana
+                        Səhifə</span> </a> </li> -->
+            <li id="menu-items"><i class="fas fa-file"></i><a href="index.html">&nbsp;&nbsp;&nbsp;<span>Sehifeler</span>
+                </a> </li>
+            <li id="menu-items"><i class="fab fa-creative-commons-by"></i><a
+                    href="member.html">&nbsp;&nbsp;&nbsp;<span>Üzvlər</span> </a> </li>
+            <li id="menu-items"><i class="fas fa-calendar-check"></i><a
+                    href="event.html">&nbsp;&nbsp;&nbsp;<span>Tədbirlər</span> </a> </li>
+            <li id="menu-items"><i class="fas fa-calendar-check"></i><a
+                    href="contact.html">&nbsp;&nbsp;&nbsp;<span>Əlaqə</span> </a> </li>
+            <li id="menu-items"><i class="fas fa-calendar-check"></i><a
+                    href="course.html">&nbsp;&nbsp;&nbsp;<span>Kurs</span> </a> </li>
+            <li id="menu-items"><i class="fas fa-calendar-check"></i><a
+                    href="registration.html">&nbsp;&nbsp;&nbsp;<span>Qeydiyyat</span> </a> </li>
+            <li id="menu-items"><i class="fas fa-address-card"></i><a
+                    href="about.html">&nbsp;&nbsp;&nbsp;<span>Haqqımızda</span> </a> </li>
+        </ul>
     </div>
-
     <section class="interface">
         <div class="navigation">
-            <div class="check-nav">
-                <input type="checkbox" id="check" />
-                <label for="check" class="checkbtn">
-                    <img src="https://img.icons8.com/material-outlined/24/00000d/menu--v3.png" />
-                </label>
+
+            <div class="toggle">
+                <i class="fa-solid fa-bars"></i>
             </div>
+
             <div id="logout" class="login-out">
-                <img src="/media/power-off.png" alt="">
+                <img src="./media/power-off.png" alt="">
             </div>
         </div>
         <div class="staff">
@@ -104,6 +104,10 @@
                         <label>Linkedin</label>
                         <input type="email" name="linkedin" class="form-control">
                     </div>
+                    <div>
+                        <label>image</label>
+                        <input id="upload" type="file" name="file" multiple class="form-control">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
@@ -148,6 +152,10 @@
                         <label>Linkedin</label>
                         <input type="email" name="linkedin" class="form-control">
                     </div>
+                    <div>
+                        <label>image</label>
+                        <input id="updateUpload" type="file" name="file" multiple class="form-control">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
@@ -160,6 +168,11 @@
     </div>
 
     <script type="module" src="./js/member.js"></script>
+    <script >
+        $('.toggle').click(function(){
+            $('.menu').toggleClass("active");
+        })
+    </script>
 </body>
 
 </html>

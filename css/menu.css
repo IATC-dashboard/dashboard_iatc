@@ -1,4 +1,4 @@
-.side-menu {
+/* .side-menu {
     position: fixed;
     background: #111827;
     width: 20vw;
@@ -8,15 +8,15 @@
     color: #fff;
   }
   .side-menu .logo{
-    height: 15vh;
+    height: 10vh;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 70px;
   }
   .logo_img{
-  /* width: 200px; */
+  width: 200px;
   }
   .side-menu li {
     font-size: 24px;
@@ -41,3 +41,191 @@
   .side-menu li:hover i {
     color: #f3f4f6;
   }
+
+ */
+
+
+
+
+ .menu {
+  background: #111827;
+  width: 300px;
+  height: 100%;
+  position:fixed;
+  top:0;
+  left:0;
+}
+.toggle{
+  display: none;
+}
+
+.menu .logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 30px 0 0 30px;
+}
+
+.menu .logo img {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.menu .items {
+  margin-top: 40px;
+}
+
+.menu .items li {
+  list-style: none;
+  padding: 15px 0;
+  transition: 0.3s ease;
+}
+
+.menu .items li:hover{
+  background: #253047;
+  cursor:pointer;
+}
+
+.menu .items li:nth-child(1){
+  border-left:4px solid #fff;
+}
+
+.menu .items li i {
+  color: rgb(134, 141, 151);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 10px 0 25px;
+}
+
+.menu .items li:hover i,
+.menu .items li:hover a{
+  color:#f3f4f6;
+}
+
+.menu .items li a{
+  text-decoration:none;
+  color: rgb(134, 141, 151);
+  font-weight: 300px;
+  transition: 0.3s ease;
+}
+
+.interface{
+  width: calc(100%-300px);
+  margin-left: 300px;
+  
+}
+
+.interface .navigation{
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  background: #fff;
+  padding: 15px 30px;
+  border-bottom: 3px solid #594ef7;
+}
+
+
+
+/* 
+@media screen and (max-width: 1144px) {
+  .brand-name h1 {
+    font-size: 22px !important;
+  }
+  .side-menu li {
+    font-size: 18px;
+  }
+  .interface .content .cards {
+    justify-content: space-evenly;
+  }
+  .interface .content .cards .card {
+    width: 250px;
+    margin: 20px 35px;
+  }
+  .interface .content .content-2 {
+    min-height: 60vh;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .interface .content .cards {
+    justify-content: center;
+  }
+  .interface .content .cards .card {
+    width: 200px;
+    margin: 20px 35px;
+  }
+}
+@media screen and (max-width: 536px) {
+ 
+
+  .interface {
+    background: #f0f2f5;
+    width: 100vw;
+  } */
+  /* .navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+} */
+@media (max-width:1024px){
+  .menu .logo img {
+    width: 150px;
+    margin-right: 20px;
+  }
+}
+@media (max-width:769px){
+  .menu{
+    width:270px;
+    position:fixed;
+    left:-270px;
+    transition: 0.3s ease;
+  }
+
+  .menu.active{
+    left:0px;
+  }
+
+  .toggle{
+    display: initial;
+  }
+
+  .interface{
+    width:100%;
+    margin-left:0px;
+    display: inline-block;
+    transition: 0.3s ease;
+  }
+
+  .menu.active~.interface{
+    width: calc(100% - 270px);
+    margin-left:270px;
+    transition: 0.3s ease;
+  }
+
+  .interface .navigation{
+    width:100%;
+    justify-content: space-between;
+  }
+}
+
+@media(max-width:477px){
+  .interface .navigation{
+    padding: 15px;
+  }
+}
+
+
+.menu li:hover a {
+  color: #f3f4f6;
+}
+
+.menu li:hover i {
+  color: #f3f4f6;
+}
+
+

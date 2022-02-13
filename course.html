@@ -58,7 +58,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <th>#</th>
-                        <th>Tədbirn adı</th>
+                        <th>Kurs Adı</th>
+                        <th>Müəllim</th>
                         <th><button class="btn btn-success">Yeni</button></th>
                     </thead>
                     <tbody>
@@ -73,19 +74,47 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tədbir haqqinda melumat</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Əlaqə vasitələri</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Başlıq</label>
-                        <input type="text" name="title" class="form-control">
+                        <label>Kurs Adı</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" id="eventContent" rows="3"></textarea>
+                        <label>Müəllim</label>
+                        <input type="text" name="teacher" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Məzmun</label>
+                        <textarea class="form-control" id="courseContent" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Ümumi məlumat</label>
+                        <textarea class="form-control" id="information" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tədris müddəti</label>
+                        <input type="text" name="duration" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Kursda tələbə sayı</label>
+                        <input type="number" name="student" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>İştirakçılar</label>
+                        <textarea class="form-control" id="participants" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Proqram</label>
+                        <textarea class="form-control" id="program" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Bacarıqlar</label>
+                        <textarea class="form-control" id="skills" rows="3"></textarea>
                     </div>
                     <div>
                         <label>image</label>
@@ -104,37 +133,59 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tədbir haqqinda melumat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Başlıq</label>
-                        <input type="text" name="title" class="form-control">
+                        <label>Kurs Adı</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" id="eventContent" rows="3"></textarea>
+                        <label>Müəllim</label>
+                        <input type="text" name="teacher" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Məzmun</label>
+                        <textarea class="form-control" id="courseContent" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Ümumi məlumat</label>
+                        <textarea class="form-control" id="information" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tədris müddəti</label>
+                        <input type="text" name="duration" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Kursda tələbə sayı</label>
+                        <input type="number" name="student" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>İştirakçılar</label>
+                        <textarea class="form-control" id="participants" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Proqram</label>
+                        <textarea class="form-control" id="program" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Bacarıqlar</label>
+                        <textarea class="form-control" id="skills" rows="3"></textarea>
                     </div>
                     <div>
                         <label>image</label>
-                        <input id="updateUpload" type="file" name="file" multiple class="form-control">
+                        <input id="updateUpload" type="file" name="file" class="form-control">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
-                        Bagla</button>
-                    <button type="button" id="edit-event" class="btn btn-success "><i class="fa fa-save"></i> Yadda
-                        saxla</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                    Bagla</button>
+                <button type="button" id="edit-course" class="btn btn-success "><i class="fa fa-save"></i> Yadda
+                    saxla</button>
             </div>
         </div>
     </div>
+    </div>
 
-    <script type="module" src="./js/event.js"></script>
+    <script type="module" src="./js/course.js"></script>
     <script >
         $('.toggle').click(function(){
             $('.menu').toggleClass("active");

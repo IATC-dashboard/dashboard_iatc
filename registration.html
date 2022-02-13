@@ -58,8 +58,9 @@
                 <table class="table table-bordered">
                     <thead>
                         <th>#</th>
-                        <th>Tədbirn adı</th>
-                        <th><button class="btn btn-success">Yeni</button></th>
+                        <th>Ad və soyad</th>
+                        <th>E-mail</th>
+                        <th>Telefon</th>
                     </thead>
                     <tbody>
                         <tr data-id="0"></tr>
@@ -68,73 +69,48 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="staff-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tədbir haqqinda melumat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Başlıq</label>
-                        <input type="text" name="title" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" id="eventContent" rows="3"></textarea>
-                    </div>
-                    <div>
-                        <label>image</label>
-                        <input id="upload" type="file" name="file" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
-                        Bagla</button>
-                    <button type="button" class="btn btn-success "><i class="fa fa-save"></i> Yadda saxla</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="modal fade" id="staffUpdate-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tədbir haqqinda melumat</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Kursa Qeydiyyatdan Keçənlər</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Başlıq</label>
-                        <input type="text" name="title" class="form-control">
+                        <label>Ad və Soyad</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" id="eventContent" rows="3"></textarea>
+                        <label>Kurs adı</label>
+                        <input type="text" name="courseName" class="form-control">
                     </div>
-                    <div>
-                        <label>image</label>
-                        <input id="updateUpload" type="file" name="file" multiple class="form-control">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="tel" name="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Özünüz haqqında qısa məlumat</label>
+                        <textarea class="form-control" id="registrationContent" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
                         Bagla</button>
-                    <button type="button" id="edit-event" class="btn btn-success "><i class="fa fa-save"></i> Yadda
-                        saxla</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script type="module" src="./js/event.js"></script>
+    <script type="module" src="./js/registration.js"></script>
     <script >
         $('.toggle').click(function(){
             $('.menu').toggleClass("active");
